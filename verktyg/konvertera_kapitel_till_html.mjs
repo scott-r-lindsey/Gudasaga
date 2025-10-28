@@ -3,9 +3,12 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
 const DEFAULT_IN_DIR = 'resurser/kapitel';
 const DEFAULT_OUT_DIR = 'resurser/kapitel_html';
+const SKRIPT_SOKVAG = fileURLToPath(import.meta.url);
+const REPO_ROT = path.resolve(path.dirname(SKRIPT_SOKVAG), '..');
 
 /**
  * Skriver ut kort hjälptext.
@@ -16,7 +19,7 @@ function visaHjalp() {
 - IN-MAPP (valfri) anger var txt-kapitel ligger. Standard: ${DEFAULT_IN_DIR}
 - UT-MAPP (valfri) anger var html-filer ska hamna. Standard: ${DEFAULT_OUT_DIR}
 
-Kör skriptet från repo-roten så matchar standardvägarna.`);
+Standardvägarna utgår alltid från repo-roten, oavsett var du kör skriptet ifrån.`);
 }
 
 /**
@@ -150,8 +153,17 @@ async function huvud() {
     return;
   }
 
-  const inMatning = path.resolve(process.cwd(), argIn ?? DEFAULT_IN_DIR);
-  const utMatning = path.resolve(process.cwd(), argUt ?? DEFAULT_OUT_DIR);
+  const tolkaVag = (argument, standardRelativ) => {
+    if (argument) {
+      return path.isAbsolute(argument)
+        ? argument
+        : path.resolve(REPO_ROT, argument);
+    }
+    return path.resolve(REPO_ROT, standardRelativ);
+  };
+
+  const inMatning = tolkaVag(argIn, DEFAULT_IN_DIR);
+  const utMatning = tolkaVag(argUt, DEFAULT_OUT_DIR);
 
   const filer = (await fs.readdir(inMatning)).filter((namn) => namn.endsWith('.txt'));
   if (filer.length === 0) {
@@ -173,7 +185,7 @@ async function huvud() {
     const html = genereraHtml(kapitel);
     await fs.writeFile(utFil, html, 'utf8');
 
-    console.log(`✓ Skapade ${path.relative(process.cwd(), utFil)}`);
+    console.log(`✓ Skapade ${path.relative(REPO_ROT, utFil)}`);
   }
 }
 
@@ -181,4 +193,3 @@ huvud().catch((fel) => {
   console.error('Misslyckades:', fel.message);
   process.exitCode = 1;
 });
-
