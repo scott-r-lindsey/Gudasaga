@@ -12,6 +12,7 @@ function App() {
     kapitelNummer: null,
     titel: '',
     html: '',
+    bildUrl: null,
   });
   const [loading, setLoading] = useState(true);
 
@@ -21,7 +22,7 @@ function App() {
     const kapitelSokvag = valtKapitel.sokvag;
 
     setLoading(true);
-    setKapitelData({ kapitelNummer: null, titel: '', html: '' });
+    setKapitelData({ kapitelNummer: null, titel: '', html: '', bildUrl: null });
 
     hamtaKapitelInnehall(kapitelSokvag)
       .then(data => {
@@ -29,7 +30,12 @@ function App() {
           return;
         }
 
-        setKapitelData(data);
+        setKapitelData({
+          kapitelNummer: data.kapitelNummer ?? null,
+          titel: data.titel ?? '',
+          html: data.html ?? '',
+          bildUrl: data.bildUrl ?? null,
+        });
         setLoading(false);
       })
       .catch(fel => {
@@ -43,6 +49,7 @@ function App() {
           kapitelNummer: null,
           titel: 'Fel vid läsning',
           html: `<p>${felMeddelande}</p>`,
+          bildUrl: null,
         });
         setLoading(false);
       });
@@ -80,6 +87,7 @@ function App() {
         kapitelNummer={fallbackKapitelNummer}
         kapitelTitel={kapitelData.titel}
         html={kapitelData.html}
+        bildUrl={kapitelData.bildUrl}
         loading={loading}
       />
       <Navigation

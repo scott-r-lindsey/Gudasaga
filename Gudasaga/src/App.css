@@ -48,6 +48,20 @@ main {
   gap: 1.75rem;
 }
 
+.kapitel-bild {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 36px rgba(24, 20, 16, 0.18);
+}
+
+.kapitel-bild img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 .kapitel-inledning {
   display: flex;
   flex-direction: column;

@@ -7,6 +7,7 @@ vi.mock('./kapitelregister', () => ({
       kapitelNummer: '1',
       titel: 'Provkapitel',
       html: '<p>Testkapitelinnehåll</p>',
+      bildUrl: 'https://exempel.se/kapitel_01.jpg',
     })
   ),
 }));
@@ -27,6 +28,8 @@ describe('App', () => {
     expect(hamtaKapitelInnehall).toHaveBeenCalledWith('./kapitel/kapitel_00.html');
 
     await screen.findByText(/Kapitel\s+01\s+av\s+42\s+·\s+Provkapitel/i);
+    const bild = await screen.findByRole('img', { name: /illustration för provkapitel/i });
+    expect(bild).toHaveAttribute('src', 'https://exempel.se/kapitel_01.jpg');
     await waitFor(() => {
       expect(screen.queryByText('Laddar kapitel...')).not.toBeInTheDocument();
     });

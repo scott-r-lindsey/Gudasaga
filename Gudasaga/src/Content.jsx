@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Content = ({ kapitelNummer, kapitelTitel, html, loading }) => {
+const Content = ({ kapitelNummer, kapitelTitel, html, bildUrl, loading }) => {
   if (loading) {
     return (
       <main aria-busy="true">
@@ -20,6 +20,15 @@ const Content = ({ kapitelNummer, kapitelTitel, html, loading }) => {
   return (
     <main aria-live="polite">
       <article className="kapitelinnehall">
+        {bildUrl ? (
+          <figure className="kapitel-bild">
+            <img
+              src={bildUrl}
+              alt={`Illustration för ${visadTitel}`}
+              loading="lazy"
+            />
+          </figure>
+        ) : null}
         <header className="kapitel-inledning">
           {visatNummer ? <p className="kapitel-nummer">Kapitel {visatNummer}</p> : null}
           <h2>{visadTitel}</h2>
