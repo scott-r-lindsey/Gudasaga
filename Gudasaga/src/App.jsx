@@ -6,8 +6,60 @@ import { book } from './book';
 import { hamtaKapitelInnehall } from './kapitelregister';
 import './App.css';
 
+function normaliseraKapitelParam(kapitelParam) {
+  if (!kapitelParam) {
+    return null;
+  }
+
+  const matchning = kapitelParam.match(/\d+/);
+  if (!matchning) {
+    return null;
+  }
+
+  const tal = Number.parseInt(matchning[0], 10);
+  if (Number.isNaN(tal) || tal < 0) {
+    return null;
+  }
+
+  return String(tal).padStart(2, '0');
+}
+
+function hamtaKapitelIndexFranUrl() {
+  if (typeof window === 'undefined') {
+    return 0;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const normaliserad = normaliseraKapitelParam(params.get('kapitel'));
+
+  if (!normaliserad) {
+    return 0;
+  }
+
+  const hittadIndex = book.chapters.findIndex((kapitel) => kapitel.filIndex === normaliserad);
+  return hittadIndex >= 0 ? hittadIndex : 0;
+}
+
+function skrivHistorikForKapitel(index, { ersatt = false } = {}) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const aktuelltKapitel = book.chapters[index] ?? book.chapters[0];
+  const kapitelId = aktuelltKapitel?.filIndex ?? '00';
+  const url = new URL(window.location.href);
+  url.searchParams.set('kapitel', kapitelId);
+  const nySokvag = `${url.pathname}${url.search}${url.hash}`;
+
+  if (ersatt) {
+    window.history.replaceState(null, '', nySokvag);
+  } else {
+    window.history.pushState(null, '', nySokvag);
+  }
+}
+
 function App() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(() => hamtaKapitelIndexFranUrl());
   const [kapitelData, setKapitelData] = useState({
     kapitelNummer: null,
     titel: '',
@@ -59,15 +111,55 @@ function App() {
     };
   }, [currentPage]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const hanteraPopstate = () => {
+      const indexFranUrl = hamtaKapitelIndexFranUrl();
+      setCurrentPage(indexFranUrl);
+    };
+
+    window.addEventListener('popstate', hanteraPopstate);
+    return () => window.removeEventListener('popstate', hanteraPopstate);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const urlKapitel = normaliseraKapitelParam(params.get('kapitel'));
+    const aktuelltKapitelId = book.chapters[currentPage]?.filIndex ?? '00';
+
+    if (urlKapitel !== aktuelltKapitelId) {
+      skrivHistorikForKapitel(currentPage, { ersatt: true });
+    }
+  }, [currentPage]);
+
+  const bytKapitel = (nyttIndex, { skrivHistorik = true } = {}) => {
+    if (nyttIndex < 0 || nyttIndex >= book.chapters.length) {
+      return;
+    }
+
+    setCurrentPage(nyttIndex);
+
+    if (skrivHistorik) {
+      skrivHistorikForKapitel(nyttIndex);
+    }
+  };
+
   const handleNext = () => {
     if (currentPage < book.chapters.length - 1) {
-      setCurrentPage(currentPage + 1);
+      bytKapitel(currentPage + 1);
     }
   };
 
   const handlePrev = () => {
     if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
+      bytKapitel(currentPage - 1);
     }
   };
 
@@ -101,3 +193,5 @@ function App() {
 }
 
 export default App;
+
+// Låt Balder resa sig igen (när bygget lyckas)
