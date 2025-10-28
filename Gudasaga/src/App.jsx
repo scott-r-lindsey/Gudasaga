@@ -92,11 +92,6 @@ function App() {
           <p style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>
             Vi hittade inga HTML-kapitel i <code>src/kapitel</code>. Utan dem är denna saga lika tom som Ginnungagap.
           </p>
-          <ol style={{ textAlign: 'left', fontSize: '1.1rem', lineHeight: 1.7, fontWeight: 'bold' }}>
-            <li>Kör <code>bash verktyg/dela_upp_kapitel.sh</code> i projektroten.</li>
-            <li>Starta om byggprocessen med <code>npm run dev</code> eller <code>npm run build</code>.</li>
-            <li>Uppdatera sidan och ta ett djupt andetag.</li>
-          </ol>
           <p style={{ marginTop: '1.5rem', fontStyle: 'italic' }}>
             (Tips: kontrollera att filerna <code>src/kapitel/kapitel_00.html</code> osv. verkligen existerar.)
           </p>
