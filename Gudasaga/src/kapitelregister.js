@@ -5,9 +5,7 @@ export const kapitelRegister = import.meta.glob('./kapitel/*.html', {
   import: 'default',
 });
 
-if (Object.keys(kapitelRegister).length === 0) {
-  throw new Error('Inga kapitel hittades i ./kapitel. Lägg till HTML-filer innan appen startas.');
-}
+export const saknarKapitelinnehall = Object.keys(kapitelRegister).length === 0;
 
 const kapitelBilder = import.meta.glob('./assets/kapitelbilder/*.{png,jpg,jpeg,webp,avif,gif,svg}', {
   eager: true,

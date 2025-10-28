@@ -3,7 +3,7 @@ import Sidhuvud from './Sidhuvud';
 import Innehall from './Innehall';
 import Navigering from './Navigering';
 import { book } from './book';
-import { hamtaKapitelInnehall } from './kapitelregister';
+import { hamtaKapitelInnehall, saknarKapitelinnehall } from './kapitelregister';
 import './App.css';
 
 function normaliseraKapitelParam(kapitelParam) {
@@ -59,6 +59,51 @@ function skrivHistorikForKapitel(index, { ersatt = false } = {}) {
 }
 
 function App() {
+  if (saknarKapitelinnehall) {
+    const bakgrundStil = {
+      backgroundImage: 'repeating-linear-gradient(135deg, #ff00ff, #ff00ff 40px, #0ff 40px, #0ff 80px)',
+      color: '#000',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      padding: '4rem 1rem',
+      fontFamily: '"Comic Sans MS", "Marker Felt", cursive, system-ui',
+    };
+
+    const rutaStil = {
+      backgroundColor: 'rgba(255, 255, 0, 0.9)',
+      border: '12px double red',
+      boxShadow: '12px 12px 0 #000',
+      padding: '2.5rem 3rem',
+      maxWidth: '38rem',
+      transform: 'rotate(-2deg)',
+    };
+
+    return (
+      <div className="tomma-kapitel-varning" style={bakgrundStil}>
+        <marquee behavior="alternate" direction="right" scrollAmount="18" style={{ fontSize: '2.5rem', fontWeight: 'bold', textTransform: 'uppercase' }}>
+          ❌ INGA KAPITEL HÄR ❌
+        </marquee>
+        <div style={rutaStil}>
+          <h1 style={{ fontSize: '3rem', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>PANIK! KAPITELSAKNADE.</h1>
+          <p style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>
+            Vi hittade inga HTML-kapitel i <code>src/kapitel</code>. Utan dem är denna saga lika tom som Ginnungagap.
+          </p>
+          <ol style={{ textAlign: 'left', fontSize: '1.1rem', lineHeight: 1.7, fontWeight: 'bold' }}>
+            <li>Kör <code>bash verktyg/dela_upp_kapitel.sh</code> i projektroten.</li>
+            <li>Starta om byggprocessen med <code>npm run dev</code> eller <code>npm run build</code>.</li>
+            <li>Uppdatera sidan och ta ett djupt andetag.</li>
+          </ol>
+          <p style={{ marginTop: '1.5rem', fontStyle: 'italic' }}>
+            (Tips: kontrollera att filerna <code>src/kapitel/kapitel_00.html</code> osv. verkligen existerar.)
+          </p>
+        </div>
+      </div>
+    );
+  }
   const [currentPage, setCurrentPage] = useState(() => hamtaKapitelIndexFranUrl());
   const [kapitelData, setKapitelData] = useState({
     kapitelNummer: null,

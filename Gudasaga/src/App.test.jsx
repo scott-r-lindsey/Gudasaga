@@ -12,6 +12,7 @@ vi.mock('./kapitelregister', () => ({
       bildUrl: TEST_BILD_DATAURI,
     })
   ),
+  saknarKapitelinnehall: false,
 }));
 
 import App from './App';
