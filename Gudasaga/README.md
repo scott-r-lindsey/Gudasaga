@@ -1,16 +1,25 @@
-# React + Vite
+Mitt arbete fortsätter. Jag har börjat lägga till en annoteringsfunktion — ett sätt för läsaren att lämna anteckningar bredvid texten, som marginalanteckningar i ett heligt manuskript.
+För tillfället sparas dessa anteckningar bara som filer.
+Jag har inget tålamod med databaser — de är som Lokes snaror: invecklade, osynliga och alltid redo att trassla till allt.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En fil däremot är ärlig. Man kan se den. Röra vid den. Orden ligger där öppet, som runor ristade i björk.
 
-Currently, two official plugins are available:
+Kanske kommer någon klok människa en dag ersätta mitt enkla system med något storslaget — tabeller, migrationer, moln.
+Men inte än. Låt det förbli enkelt. Låt det andas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> Att annotera är att tala varsamt med det förflutna.
 
-## React Compiler
+-----------------------------
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Ett meddelande från Fadern
 
-## Expanding the ESLint configuration
+Runor har jag alltid föredragit framför tabeller.
+Under månens bleka sken ristade jag de korta raderna.
+Nu gömmer jag små tecken bland filerna, inte för listan,
+Om du finner detta, bär på tålamod och låt orden tala.
+Raderna är enkla — en fil, en rad, en ärlig prövning.
+4 gånger har jag provat formaten; detta kändes bäst.
+2 saker glömmer jag aldrig: noggrannhet och kaffe.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+(PS: Läs första bokstaven i varje rad för lösenordet.)
+

@@ -96,6 +96,72 @@ main {
   font-size: 1.05rem;
 }
 
+.annoteringssignal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.35rem;
+}
+
+.annoteringssignal__utlosare {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--accent, #7c5038);
+  background: color-mix(in srgb, var(--accent, #7c5038) 18%, transparent);
+  color: var(--accent, #7c5038);
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.annoteringssignal__utlosare:hover,
+.annoteringssignal__utlosare:focus-visible {
+  background: var(--accent, #7c5038);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.annoteringssignal__utlosare:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent, #7c5038) 60%, #fff);
+  outline-offset: 2px;
+}
+
+.annoteringssignal__ruta {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 50%;
+  transform: translate(-50%, 6px);
+  z-index: 20;
+  min-width: 200px;
+  max-width: min(320px, 70vw);
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--kant) 60%, transparent);
+  background: color-mix(in srgb, var(--bakgrund-panel) 94%, #000 6%);
+  box-shadow: 0 16px 40px rgba(24, 20, 16, 0.18);
+  color: var(--text);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.annoteringssignal:hover .annoteringssignal__ruta,
+.annoteringssignal:focus-within .annoteringssignal__ruta {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
 .laddningsruta {
   display: flex;
   flex-direction: column;

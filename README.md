@@ -67,3 +67,22 @@ Ingen funnen. Kanske gudomlig.
 Tillägnan
 Till Pappa — som trodde att div-taggar kunde rymma det gudomliga.
 
+--------------------
+
+# Annoteringsarkivet
+
+Jag har nyligen upptäckt att pappa arbetade med något som han aldrig berättade om — ett annoteringssystem.
+Han måste ha tänkt sig att läsaren skulle kunna lämna anteckningar bredvid berättelserna, kanske för att diskutera med gudarna — eller med honom.
+
+I projektmappen hittade jag en zip-fil med namnet annotations_backup.zip.
+Ingen dokumentation, inga ledtrådar, bara arkivet och en kort textsnutt där det står: ”Behåll dem säkra tills de är färdiga.”
+
+Typiskt honom — alltid så hemlighetsfull när han trodde att en idé kunde förändra allt.
+
+Nu vill jag bara återställa annoteringarna och göra dem tillgängliga.
+Men förstås, han satte ett lösenord.
+
+Jag har provat allt jag kan komma på: födelsedagar, mytologiska namn, till och med kattens. Inget fungerar.
+För allt jag vet ligger nyckeln gömd någonstans i koden — i en av hans svårtolkade kommentarer eller variabelnamn.
+
+Jag fortsätter leta. Det känns viktigt, på något sätt.
