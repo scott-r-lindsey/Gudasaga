@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 
 describe('App', () => {
-  it('renders the Vite + React headline', () => {
+  it('renders the book title', () => {
     render(<App />);
-    const headline = screen.getByText(/Vite \+ React/i);
+    const headline = screen.getByText(/My Awesome Book/i);
     expect(headline).toBeInTheDocument();
   });
 });
