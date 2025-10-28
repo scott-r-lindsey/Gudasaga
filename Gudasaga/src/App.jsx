@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
-import Content from './Content';
-import Navigation from './Navigation';
+import Sidhuvud from './Sidhuvud';
+import Innehall from './Innehall';
+import Navigering from './Navigering';
 import { book } from './book';
 import { hamtaKapitelInnehall } from './kapitelregister';
 import './App.css';
@@ -168,28 +168,28 @@ function App() {
 
   return (
     <div className="ebook-reader">
-      <Header
+      <Sidhuvud
         title={book.title}
         currentChapterIndex={currentPage}
         kapitelNummer={fallbackKapitelNummer}
         kapitelTitel={kapitelData.titel}
         totalChapters={book.chapters.length}
       />
-      <Navigation
+      <Navigering
         placering="topp"
         onPrev={handlePrev}
         onNext={handleNext}
         disablePrev={currentPage === 0}
         disableNext={currentPage === book.chapters.length - 1}
       />
-      <Content
+      <Innehall
         kapitelNummer={fallbackKapitelNummer}
         kapitelTitel={kapitelData.titel}
         html={kapitelData.html}
         bildUrl={kapitelData.bildUrl}
         loading={loading}
       />
-      <Navigation
+      <Navigering
         placering="botten"
         onPrev={handlePrev}
         onNext={handleNext}

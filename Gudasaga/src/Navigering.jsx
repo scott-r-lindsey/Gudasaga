@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navigation = ({
+const Navigering = ({
   onPrev,
   onNext,
   disablePrev,
@@ -19,4 +19,4 @@ const Navigation = ({
   );
 };
 
-export default Navigation;
+export default Navigering;

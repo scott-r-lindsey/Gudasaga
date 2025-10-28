@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Content = ({ kapitelNummer, kapitelTitel, html, bildUrl, loading }) => {
+const Innehall = ({ kapitelNummer, kapitelTitel, html, bildUrl, loading }) => {
   if (loading) {
     return (
       <main aria-busy="true">
@@ -42,4 +42,4 @@ const Content = ({ kapitelNummer, kapitelTitel, html, bildUrl, loading }) => {
   );
 };
 
-export default Content;
+export default Innehall;

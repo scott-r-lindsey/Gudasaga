@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({
+const Sidhuvud = ({
   title,
   currentChapterIndex,
   kapitelNummer,
@@ -24,4 +24,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default Sidhuvud;
