@@ -10,5 +10,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/setupTests.js',
     pool: 'threads',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov', 'html'],
+      reportsDirectory: 'coverage',
+    },
   },
 })
