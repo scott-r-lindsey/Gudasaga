@@ -74,7 +74,7 @@ Till Pappa — som trodde att div-taggar kunde rymma det gudomliga.
 Jag har nyligen upptäckt att pappa arbetade med något som han aldrig berättade om — ett annoteringssystem.
 Han måste ha tänkt sig att läsaren skulle kunna lämna anteckningar bredvid berättelserna, kanske för att diskutera med gudarna — eller med honom.
 
-I projektmappen hittade jag en zip-fil med namnet annotations_backup.zip.
+I projektmappen hittade jag en zip-fil med namnet annoteringar_säkerhetskopia.zip.
 Ingen dokumentation, inga ledtrådar, bara arkivet och en kort textsnutt där det står: ”Behåll dem säkra tills de är färdiga.”
 
 Typiskt honom — alltid så hemlighetsfull när han trodde att en idé kunde förändra allt.
