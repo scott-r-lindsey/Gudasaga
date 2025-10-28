@@ -35,7 +35,12 @@ function App() {
     <div className="ebook-reader">
       <Header title={book.title} />
       <Content text={loading ? 'Loading...' : chapterContent} />
-      <Navigation onPrev={handlePrev} onNext={handleNext} />
+      <Navigation
+        onPrev={handlePrev}
+        onNext={handleNext}
+        disablePrev={currentPage === 0}
+        disableNext={currentPage === book.chapters.length - 1}
+      />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Navigation = ({ onPrev, onNext }) => {
+const Navigation = ({ onPrev, onNext, disablePrev, disableNext }) => {
   return (
-    <nav>
-      <button onClick={onPrev}>Previous</button>
-      <button onClick={onNext}>Next</button>
+    <nav className="navigering">
+      <button onClick={onPrev} disabled={disablePrev}>Föregående</button>
+      <button onClick={onNext} disabled={disableNext}>Nästa</button>
     </nav>
   );
 };
