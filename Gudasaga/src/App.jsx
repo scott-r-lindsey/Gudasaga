@@ -175,6 +175,13 @@ function App() {
         kapitelTitel={kapitelData.titel}
         totalChapters={book.chapters.length}
       />
+      <Navigation
+        placering="topp"
+        onPrev={handlePrev}
+        onNext={handleNext}
+        disablePrev={currentPage === 0}
+        disableNext={currentPage === book.chapters.length - 1}
+      />
       <Content
         kapitelNummer={fallbackKapitelNummer}
         kapitelTitel={kapitelData.titel}
@@ -183,6 +190,7 @@ function App() {
         loading={loading}
       />
       <Navigation
+        placering="botten"
         onPrev={handlePrev}
         onNext={handleNext}
         disablePrev={currentPage === 0}

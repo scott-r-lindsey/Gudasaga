@@ -119,7 +119,7 @@ function extraheraKapitel(html, sokvag) {
   const titelElement = artikel.querySelector('h1');
   const kapitelNummer = artikel.getAttribute('data-kapitel');
   const kapitelTitel = titelElement?.textContent?.trim() ?? 'Okänt kapitel';
-  const normaliseratKapitelId = normaliseraKapitelId(kapitelNummer ?? filIndex);
+  const normaliseratKapitelId = normaliseraKapitelId(kapitelNummer ?? filIndex) ?? filIndex;
 
   if (titelElement) {
     titelElement.remove();
@@ -131,7 +131,7 @@ function extraheraKapitel(html, sokvag) {
     kapitelNummer: kapitelNummer ?? filIndex,
     titel: kapitelTitel,
     html: artikel.innerHTML.trim(),
-    bildUrl: hittaKapitelBild(kapitelNummer ?? filIndex),
+    bildUrl: hittaKapitelBild(normaliseratKapitelId),
   };
 }
 
