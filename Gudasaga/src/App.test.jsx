@@ -1,5 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, act, within } from '@testing-library/react';
+
+const TEST_BILD_DATAURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMB/6X6x/0AAAAASUVORK5CYII=';
 
 vi.mock('./kapitelregister', () => ({
   hamtaKapitelInnehall: vi.fn(() =>
@@ -7,7 +9,7 @@ vi.mock('./kapitelregister', () => ({
       kapitelNummer: '1',
       titel: 'Provkapitel',
       html: '<p>Testkapitelinnehåll</p>',
-      bildUrl: 'https://exempel.se/kapitel_01.jpg',
+      bildUrl: TEST_BILD_DATAURI,
     })
   ),
 }));
@@ -34,7 +36,7 @@ describe('App', () => {
 
     await screen.findByText(/Kapitel\s+01\s+av\s+42\s+·\s+Provkapitel/i);
     const bild = await screen.findByRole('img', { name: /illustration för provkapitel/i });
-    expect(bild).toHaveAttribute('src', 'https://exempel.se/kapitel_01.jpg');
+    expect(bild).toHaveAttribute('src', TEST_BILD_DATAURI);
     await waitFor(() => {
       expect(screen.queryByText('Laddar kapitel...')).not.toBeInTheDocument();
     });
@@ -57,7 +59,8 @@ describe('App', () => {
 
     await screen.findByText('Testkapitelinnehåll');
 
-    const nastaKnapp = screen.getByRole('button', { name: /Nästa/i });
+    const [toppNavigering] = screen.getAllByRole('navigation', { name: /Kapitelkontroller/i });
+    const nastaKnapp = within(toppNavigering).getByRole('button', { name: /Nästa/i });
     fireEvent.click(nastaKnapp);
 
     await waitFor(() => {

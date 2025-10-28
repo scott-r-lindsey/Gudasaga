@@ -13,7 +13,14 @@ if [[ ! -f "${txt_fil}" ]]; then
 fi
 
 mkdir -p "${kapitel_katalog}"
-find "${kapitel_katalog}" -maxdepth 1 -type f -name 'kapitel_*.txt' -delete
+
+# Ta bort tidigare skapade kapitel utan att förlita oss på GNU find.
+shopt -s nullglob
+kapitel_filer=("${kapitel_katalog}"/kapitel_*.txt)
+if ((${#kapitel_filer[@]})); then
+  rm -f "${kapitel_filer[@]}"
+fi
+shopt -u nullglob
 
 awk -v outdir="${kapitel_katalog}" '
 function set_out() { out=sprintf("%s/kapitel_%02d.txt", outdir, chap) }
